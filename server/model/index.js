@@ -2,6 +2,12 @@ const RssParser = require('rss-parser');
 let rssParser = new RssParser();
 const fetch = require('node-fetch');
 const cheerio = require('cheerio');
+const fs = require('fs');
+const isFormAvailable = require('./isFormAvailable.js');
+
+//get formList
+var formList = fs.readFileSync('formList.json', 'utf-8');
+formList = JSON.parse(formList);
 
 // var url = "https://sec.gov/";
 // fetch(url, {
@@ -47,8 +53,12 @@ module.exports = {
         })
     },
     getAvailableForms: function (CIK) {
+        console.log(CIK);
         return new Promise ((resolve, reject) => {
+            var promiseArr = [];
+            for (var i = 0; i < formList.length; i ++) {
 
+            }
         })
     }
 }
