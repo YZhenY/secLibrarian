@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import {Button, Segment} from 'semantic-ui-react';
+import {Input, Button, Segment} from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
-import RSS from 'rss';
 
 
 
@@ -10,32 +9,34 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      result: ''
+      result: '',
+      input:'',
     }
     this.handleSearch = this.handleSearch.bind(this);
+    this.handleInput = this.handleInput.bind(this);
   }
 
   handleSearch(e) {
-    // var url = "https://sec.gov/";
-    // fetch(url, {
-    //   headers: {
-    //   },
-    //   method: 'GET', // *GET, POST, PUT, DELETE, etc.
-    //   mode: 'cors', // no-cors, cors, *same-origin
-    //   redirect: 'follow', // *manual, follow, error
-    //   referrer: 'no-referrer', // *client, no-referrer
-    // })
-    // .then(response => response.text())
-    // .then( result => {
-    //   console.log(result);
-    // })
-    // .catch(err => console.log(err));
-    feeder.add({
-      url: 'http://www.nintendolife.com/feeds/news',
-      refresh: 2000
+    var data = {
+      ticker: this.state.input,
+    }
+    fetch('/search', {
+      body: JSON.stringify(data), // must match 'Content-Type' header
+      headers: {
+        'content-type': 'application/json'
+      },
+      method: 'POST', // *GET, POST, PUT, DELETE, etc.
+      mode: 'cors', // no-cors, cors, *same-origin
+      redirect: 'follow', // *manual, follow, error
+      referrer: 'no-referrer', // *client, no-referrer
     })
-    console.log(feeder.list());
+    .then(response => console.log(response)) // parses response to JSON
+    .catch(err => console.log( 'Error submitting input',err));
 
+  }
+
+  handleInput(e) {
+    this.setState({input:e.target.value})
   }
 
   render() {
@@ -43,6 +44,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
         </header>
+        <Input onChange={this.handleInput} value={this.state.input} placeholder="AAPL, JPM, MSOFT..."/>
         <Button onClick={this.handleSearch}>Test</Button>
         <Segment>Stuff here: {this.state.result} </Segment>
       </div>
