@@ -4,8 +4,7 @@ import {Button, Segment} from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
 import RSS from 'rss';
 
-let RssFeedEmitter = require('rss-feed-emitter');
-let feeder = new RssFeedEmitter();
+
 
 class App extends Component {
   constructor() {
