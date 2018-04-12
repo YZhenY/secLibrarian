@@ -1,9 +1,8 @@
-const RssParser = require('rss-parser');
-let rssParser = new RssParser();
+
 const fetch = require('node-fetch');
 const cheerio = require('cheerio');
 const fs = require('fs');
-const isFormAvailable = require('./isFormAvailable.js');
+const rssFeedHelper = require('./rssFeedHelper.js');
 
 //get formList
 var formList = fs.readFileSync('formList.json', 'utf-8');
@@ -24,18 +23,7 @@ formList = JSON.parse(formList);
 // })
 // .catch(err => console.log(err));
 
-var url = 'https://www.sec.gov/cgi-bin/srch-edgar?text=COMPANY-NAME%3DFORD&start=1&count=200&output=atom'
 
-let feed = rssParser.parseURL(url, function(err, feed)  {
-    console.log(feed.title);
-    var count = 0;
-    feed.items.forEach(item => {
-        console.log(count++);
-        if (count === 1) {
-            console.log(item);
-        }
-    });
-});
 
 module.exports = {
     tickerToCIK(ticker) {
@@ -53,12 +41,20 @@ module.exports = {
         })
     },
     getAvailableForms: function (CIK) {
-        console.log(CIK);
+        console.log(`Getting available forms for ${CIK}`);
         return new Promise ((resolve, reject) => {
             var promiseArr = [];
             for (var i = 0; i < formList.length; i ++) {
-
+                promiseArr.push(rssFeedHelper.isFormAvailable(CIK, formList[i]));
             }
+            Promise.all(promiseArr).then(resultArr => {
+                var resultObj = {}
+                for (var i = 0; i < resultArr.length; i++) {
+                    resultObj[formList[i]] = resultArr[i];
+                }
+                console.log(resultObj);
+                resolve(resultObj);
+            })
         })
     }
 }
