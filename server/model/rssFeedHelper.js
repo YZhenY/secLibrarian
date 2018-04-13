@@ -21,7 +21,6 @@ module.exports = {
             var url = new URL("https://www.sec.gov/cgi-bin/srch-edgar")
             var params = {text:`CIK=${CIK} AND form-type="${form}"`, start:0, count:100, output:'atom', first:1996, last:2018}
             Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
-            
             var feed = rssParser.parseURL(url.href, (err, feed) => {
                 if (err) {
                     console.log(`Errored at ${form}` ,err);

@@ -6,6 +6,9 @@ module.exports = {
         .then(CIK => {
             return model.getAvailableForms(CIK);
         })
-        res.end();
+        .then(availableForms => {
+            res.json(availableForms)
+        })
+        
     }
 }

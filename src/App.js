@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import {Input, Button, Segment} from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
+import AvailFormButtons from './components/availFormButtons.js';
 
 
 
@@ -11,6 +12,7 @@ class App extends Component {
     this.state = {
       result: '',
       input:'',
+      availableForms: [],
     }
     this.handleSearch = this.handleSearch.bind(this);
     this.handleInput = this.handleInput.bind(this);
@@ -30,7 +32,8 @@ class App extends Component {
       redirect: 'follow', // *manual, follow, error
       referrer: 'no-referrer', // *client, no-referrer
     })
-    .then(response => console.log(response)) // parses response to JSON
+    .then(response => response.json())
+    .then(result => this.setState({availableForms: result}))
     .catch(err => console.log( 'Error submitting input',err));
 
   }
@@ -46,6 +49,7 @@ class App extends Component {
         </header>
         <Input onChange={this.handleInput} value={this.state.input} placeholder="AAPL, JPM, MSOFT..."/>
         <Button onClick={this.handleSearch}>Test</Button>
+        <AvailFormButtons forms={this.state.availableForms} />
         <Segment>Stuff here: {this.state.result} </Segment>
       </div>
     );
