@@ -14,6 +14,8 @@ app.use(bodyParser.urlencoded({extended:false}));
 console.log(__dirname + '/../build');
 // app.use(express.static(__dirname + '/../build'));
 
-app.use('/search', controller.search);
+app.use('/search/ticker', controller.searchTicker);
+
+app.use('/search/form', controller.searchForm);
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

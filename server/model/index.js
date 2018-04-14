@@ -45,7 +45,7 @@ module.exports = {
         return new Promise ((resolve, reject) => {
             var promiseArr = [];
             for (var i = 0; i < formList.length; i ++) {
-                promiseArr.push(rssFeedHelper.isFormAvailable(CIK, formList[i]));
+                promiseArr.push(rssFeedHelper.isFormAvailableBrowse(CIK, formList[i]));
             }
             Promise.all(promiseArr).then(resultArr => {
                 var resultObj = {}
@@ -55,6 +55,23 @@ module.exports = {
                 console.log(resultObj);
                 resolve(resultObj);
             })
+        })
+    },
+    getAvailableForms2: function (CIK) {
+        console.log('Getting all forms available for ', CIK);
+        return new Promise ((resolve, reject) => {
+            var resultObj = {};
+
+            rssFeedHelper.getAllForms(CIK).then(forms => {
+                console.log(forms.length);
+            })
+        })
+    },
+    getForm: function (CIK, form) {
+        return new Promise ((resolve, reject) => {
+            rssFeedHelper.getForm(CIK, form)
+            .then(forms => resolve(forms))
+            .catch(err => console.log(err));
         })
     }
 }

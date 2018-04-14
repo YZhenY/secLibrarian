@@ -8,13 +8,17 @@ class AvailFormButtons extends Component {
     }
 
     render() {
+        var buttons = Object.keys(this.props.forms);
         return (
             <div className="avail-form-buttons-container">
+                Available Form Types: 
                 {
-                    this.props.forms.map( form => {
-                        return (
-                            <Button>{form}</Button>
-                        )
+                    buttons.map( form => {
+                        if (this.props.forms[form]) {
+                            return (
+                                <Button onClick={this.props.handleFormButtonClick} >{form} ({this.props.forms[form]})</Button>
+                            )
+                        }
                     })
                 }
             </div>
