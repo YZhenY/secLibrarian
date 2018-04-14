@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
-import {Input, Button, Icon} from 'semantic-ui-react';
+
 import 'semantic-ui-css/semantic.min.css';
 import AvailFormButtons from './components/availFormButtons.js';
 import FormList from './components/formList.js';
+import Header from './components/header.js';
 
 
 class App extends Component {
@@ -78,26 +79,7 @@ class App extends Component {
     }
     return (
       <div className="App">
-        <header className="App-header">
-          <span className="App-header-left">
-            <span>
-              <Icon size='huge' name='book'/> 
-            </span>
-            <span>
-              <div className='App-header-top'>
-              SEC Librarian 
-              </div>
-              <div className='App-header-bottom'>
-                Find forms in just a sec
-              </div>
-            </span>
-          </span>
-
-          <span className="App-header-right"> 
-            <Input onChange={this.handleInput} value={this.state.input} placeholder="AAPL, JPM, MSFT..."/>
-            <Button onClick={this.handleSearch}><Icon name='search'/></Button>
-          </span>
-        </header>
+        <Header handleInput={this.handleInput} handleSearch={this.handleSearch} inputValue={this.state.input} />
         {
           <span>{currentSearch}</span>
         }

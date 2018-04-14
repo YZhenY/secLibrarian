@@ -15,8 +15,16 @@
 
 .App-header-top {
   font-size: 1.5em;
+  text-align: left;
 }
 
 .App-header-bottom {
-  font-size: large;
+  font-size: 1em;
+  text-align: left;
+}
+
+
+.App-header-left {
+  display: flex;
+  align-items: center;
 }
