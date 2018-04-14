@@ -35,10 +35,10 @@ module.exports = {
             })
         })
     },
-    getForm: function (CIK, form) {
+    getForm: function (CIK, form, start) {
         return new Promise ((resolve, reject) => {
             var url = new URL("https://www.sec.gov/cgi-bin/browse-edgar")
-            var params = {CIK:CIK, type:form, start:0, count:100, output:'atom', action:'getcompany'}
+            var params = {CIK:CIK, type:form, start:start, count:100, output:'atom', action:'getcompany'}
             Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
             var feed = rssParser.parseURL(url.href, (err, feed) => {
                 if (err) {

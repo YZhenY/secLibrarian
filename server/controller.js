@@ -14,7 +14,7 @@ module.exports = {
         })  
     },
     searchForm: function (req, res) {
-        model.getForm(req.body.CIK, req.body.formType)
+        model.getForm(req.body.CIK, req.body.formType, req.body.start)
         .then(formList => res.json(formList))
         .catch(err => console.log(err));
     }

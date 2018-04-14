@@ -12,7 +12,6 @@ class FormList extends Component {
             <Item.Group className="form-list-container">
                 {
                     this.props.formList.map((form, index) => {
-                        console.log(form);
                         var date = new Date(form.pubDate)
                         var accNo = form.id.slice(form.id.match(/accession-number=/).index + 17);
                         return (

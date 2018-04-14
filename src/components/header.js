@@ -8,24 +8,24 @@ class Header extends Component {
     }
     render() {
         return (
-            <header className="App-header">
-            <span className="App-header-left">
+            <header className="app-header">
+            <span className="header-left">
                 <Icon size='huge' name='book'/> 
               <span>
-                <div className='App-header-top'>
+                <div className='header-top'>
                 SEC Librarian 
                 </div>
-                <div className='App-header-bottom'>
+                <div className='header-bottom'>
                   Find forms in just a sec
                 </div>
               </span>
             </span>
 
-            <span className='App-current-search'> 
+            <span className='header-current-search'> 
             {this.props.currentSearch}
             </span>
 
-            <span className="App-header-right"> 
+            <span className="header-right"> 
               <Input onChange={this.props.handleInput} value={this.props.inputValue} placeholder="AAPL, JPM, MSFT..."/>
               <Button onClick={this.props.handleSearch}><Icon name='search'/></Button>
             </span>

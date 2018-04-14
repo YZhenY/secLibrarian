@@ -3,7 +3,7 @@
 }
 
 
-.App-header {
+.app-header {
   background-color: #222;
   height: 150px;
   padding: 20px;
@@ -13,18 +13,21 @@
   align-items: center;
 }
 
-.App-header-top {
+.header-top {
   font-size: 1.5em;
   text-align: left;
 }
 
-.App-header-bottom {
+.header-bottom {
   font-size: 1em;
   text-align: left;
 }
 
+.header-current-search {
+  font-size: 1.7em;
+}
 
-.App-header-left {
+.header-left {
   display: flex;
   align-items: center;
 }

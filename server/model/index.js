@@ -67,9 +67,9 @@ module.exports = {
             })
         })
     },
-    getForm: function (CIK, form) {
+    getForm: function (CIK, form, start) {
         return new Promise ((resolve, reject) => {
-            rssFeedHelper.getForm(CIK, form)
+            rssFeedHelper.getForm(CIK, form, start)
             .then(forms => resolve(forms))
             .catch(err => console.log(err));
         })
