@@ -8,23 +8,6 @@ const rssFeedHelper = require('./rssFeedHelper.js');
 var formList = fs.readFileSync('formList.json', 'utf-8');
 formList = JSON.parse(formList);
 
-// var url = "https://sec.gov/";
-// fetch(url, {
-//     headers: {
-//     },
-//     method: 'GET', // *GET, POST, PUT, DELETE, etc.
-//     mode: 'cors', // no-cors, cors, *same-origin
-//     redirect: 'follow', // *manual, follow, error
-//     referrer: 'no-referrer', // *client, no-referrer
-// })
-// .then(response => response.text())
-// .then( result => {
-//     console.log(result);
-// })
-// .catch(err => console.log(err));
-
-
-
 module.exports = {
     tickerToCIK(ticker) {
         //gets CIK through calling search and getting respective HREF

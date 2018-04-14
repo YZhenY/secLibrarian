@@ -2,19 +2,6 @@ const RssParser = require('rss-parser');
 let rssParser = new RssParser();
 const {URL} = require('url');
 
-var url = 'https://www.sec.gov/cgi-bin/srch-edgar?text=CIK%3D0000320193&start=1&count=10&output=atom'
-
-let feed = rssParser.parseURL(url, function(err, feed)  {
-    console.log(feed.title);
-    var count = 0;
-    feed.items.forEach(item => {
-        console.log(count++);
-        if (count === 1) {
-            console.log(item);
-        }
-    });
-});
-
 module.exports = {
     isFormAvailableBrowse: function (CIK, form) {
         return new Promise ((resolve, reject) => {

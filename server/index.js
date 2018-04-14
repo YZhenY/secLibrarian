@@ -11,8 +11,9 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 
-console.log(__dirname + '/../build');
-// app.use(express.static(__dirname + '/../build'));
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(__dirname + '/../build'));
+}
 
 app.use('/search/ticker', controller.searchTicker);
 
