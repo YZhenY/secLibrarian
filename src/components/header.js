@@ -20,7 +20,11 @@ class Header extends Component {
                 </div>
               </span>
             </span>
-  
+
+            <span className='App-current-search'> 
+            {this.props.currentSearch}
+            </span>
+
             <span className="App-header-right"> 
               <Input onChange={this.props.handleInput} value={this.props.inputValue} placeholder="AAPL, JPM, MSFT..."/>
               <Button onClick={this.props.handleSearch}><Icon name='search'/></Button>

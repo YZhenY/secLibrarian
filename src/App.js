@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-
+import {Segment} from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
 import AvailFormButtons from './components/availFormButtons.js';
 import FormList from './components/formList.js';
@@ -79,10 +79,7 @@ class App extends Component {
     }
     return (
       <div className="App">
-        <Header handleInput={this.handleInput} handleSearch={this.handleSearch} inputValue={this.state.input} />
-        {
-          <span>{currentSearch}</span>
-        }
+        <Header currentSearch={currentSearch} handleInput={this.handleInput} handleSearch={this.handleSearch} inputValue={this.state.input} />
         <AvailFormButtons forms={this.state.availableForms} handleFormButtonClick={this.handleFormButtonClick}/>
         <FormList formList={this.state.forms} />
       </div>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Input, Button, Segment} from 'semantic-ui-react';
+import {Button, Segment} from 'semantic-ui-react';
 
 class AvailFormButtons extends Component {
     constructor(props) {
@@ -10,7 +10,7 @@ class AvailFormButtons extends Component {
     render() {
         var buttons = Object.keys(this.props.forms);
         return (
-            <div className="avail-form-buttons-container">
+            <Segment className="avail-form-buttons-container">
                 Available Form Types: 
                 {
                     buttons.map( (form, index) => {
@@ -25,7 +25,7 @@ class AvailFormButtons extends Component {
                         }
                     })
                 }
-            </div>
+            </Segment>
         )
     }
 }
