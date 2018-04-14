@@ -129,12 +129,16 @@ class App extends Component {
 
   render() {
     var currentSearch;
+    var currentForm;
     if (this.state.curCIK && this.state.curTicker) {
       currentSearch = this.state.curTicker + ' CIK: ' + this.state.curCIK;
     }
+    if (this.state.curFormType) {
+      currentForm = "Form: " + this.state.curFormType;
+    }
     return (
       <div className="App">
-        <Header currentSearch={currentSearch} handleInput={this.handleInput} handleSearch={this.handleSearch} inputValue={this.state.input} />
+        <Header currentForm={currentForm} currentSearch={currentSearch} handleInput={this.handleInput} handleSearch={this.handleSearch} inputValue={this.state.input} />
         <AvailFormButtons forms={this.state.availableForms} handleFormButtonClick={this.handleFormButtonClick}/>
         <FormList formList={this.state.forms} />
       </div>

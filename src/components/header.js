@@ -21,8 +21,13 @@ class Header extends Component {
               </span>
             </span>
 
-            <span className='header-current-search'> 
-            {this.props.currentSearch}
+            <span className='header-current'>
+                <div className="header-current-search"> 
+                    {this.props.currentSearch}
+                </div>
+                <div className="header-current-form"> 
+                {this.props.currentForm}
+                </div>
             </span>
 
             <span className="header-right"> 
