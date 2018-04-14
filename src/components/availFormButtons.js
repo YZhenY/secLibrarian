@@ -13,10 +13,14 @@ class AvailFormButtons extends Component {
             <div className="avail-form-buttons-container">
                 Available Form Types: 
                 {
-                    buttons.map( form => {
+                    buttons.map( (form, index) => {
                         if (this.props.forms[form]) {
+                            var count = this.props.forms[form]
+                            if (count === 100) {
+                                count = '100 +';
+                            }
                             return (
-                                <Button onClick={this.props.handleFormButtonClick} >{form} ({this.props.forms[form]})</Button>
+                                <Button key={index} onClick={this.props.handleFormButtonClick} >{form} ({count})</Button>
                             )
                         }
                     })

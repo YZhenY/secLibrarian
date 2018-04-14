@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-import {Input, Button, Segment} from 'semantic-ui-react';
+import {Input, Button, Icon} from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
 import AvailFormButtons from './components/availFormButtons.js';
-
+import FormList from './components/formList.js';
 
 
 class App extends Component {
@@ -12,7 +12,6 @@ class App extends Component {
     this.state = {
       curTicker:undefined,
       curCIK: undefined,
-      result: '',
       input:'',
       availableForms: {},
       forms:[],
@@ -68,7 +67,7 @@ class App extends Component {
       referrer: 'no-referrer', // *client, no-referrer
     })
     .then(response => response.json())
-    .then(result => console.log(result))
+    .then(result => this.setState({forms:result}))
     .catch(err => console.log( 'Error submitting input',err));
   }
 
@@ -80,14 +79,30 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
+          <span className="App-header-left">
+            <span>
+              <Icon size='huge' name='book'/> 
+            </span>
+            <span>
+              <div className='App-header-top'>
+              SEC Librarian 
+              </div>
+              <div className='App-header-bottom'>
+                Find forms in just a sec
+              </div>
+            </span>
+          </span>
+
+          <span className="App-header-right"> 
+            <Input onChange={this.handleInput} value={this.state.input} placeholder="AAPL, JPM, MSFT..."/>
+            <Button onClick={this.handleSearch}><Icon name='search'/></Button>
+          </span>
         </header>
-        <Input onChange={this.handleInput} value={this.state.input} placeholder="AAPL, JPM, MSFT..."/>
-        <Button onClick={this.handleSearch}>Search</Button>
         {
           <span>{currentSearch}</span>
         }
         <AvailFormButtons forms={this.state.availableForms} handleFormButtonClick={this.handleFormButtonClick}/>
-        <Segment>Stuff here: {this.state.result} </Segment>
+        <FormList formList={this.state.forms} />
       </div>
     );
   }
