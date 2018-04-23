@@ -56,22 +56,7 @@ module.exports = {
             })
         })
     },
-    get100FormsSearch: function (CIK, start) {
-        //limited due to API
-        return new Promise ((resolve, reject) => {
-            var url = new URL("https://www.sec.gov/cgi-bin/srch-edgar")
-            var params = {text:`CIK=${CIK}`, start:start, count:100, output:'atom', first:1996, last:2018}
-            Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
-            console.log(url.href)
-            var feed = rssParser.parseURL(url.href, (err, feed) => {
-                if (err) {
-                    console.log(`Errored at ${form}` ,err);
-                } else {
-                    resolve(feed.items);
-                }
-            })
-        })
-    },
+    get100FormsSearch: get100FormsSearch,
     getAllFormsSearch: function (CIK) {
         return new Promise((resolve, reject) => {
             var position =  0;
