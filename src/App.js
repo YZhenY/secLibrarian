@@ -20,9 +20,14 @@ class App extends Component {
       forms:[],
       nextPageExists: false,
     }
-    this.handleSearch = this.handleSearch.bind(this);
+
+    //handles input search in state change
     this.handleInput = this.handleInput.bind(this);
+    //searches for respective ticker and returns avaiable form buttons
+    this.handleSearch = this.handleSearch.bind(this);
+    //loads forms
     this.handleFormButtonClick = this.handleFormButtonClick.bind(this);
+    //handles the loading of the next 100 forms (triggered by scrolling);
     this.handleLoadNextPage = this.handleLoadNextPage.bind(this);
 
     //set window listner for bottom scroll
